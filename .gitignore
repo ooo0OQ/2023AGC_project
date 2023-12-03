@@ -1,0 +1,4 @@
+build/Debug/
+build/raytracing_test.dir/
+build/raytracing_gui.dir/
+build/external/

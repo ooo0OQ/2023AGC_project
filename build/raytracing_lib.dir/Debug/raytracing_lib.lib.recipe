@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ProjectOutputs>
+    <ProjectOutput>
+      <FullPath>D:\cb\whk\T\2s\AGC\pro1\build\x64\Debug\ZERO_CHECK</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\cb\whk\T\2s\AGC\pro1\build\lib\x64\Debug\raytracing_lib_flattened_shaders</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\cb\whk\T\2s\AGC\pro1\build\lib\x64\Debug\raytracing_lib_shader_files</FullPath>
+    </ProjectOutput>
+  </ProjectOutputs>
+  <ContentFiles />
+  <SatelliteDlls />
+  <NonRecipeFileRefs />
+</Project>

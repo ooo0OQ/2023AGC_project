@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ProjectOutputs>
+    <ProjectOutput>
+      <FullPath>D:\cb\whk\T\2s\AGC\pro1\build\x64\Debug\ZERO_CHECK</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\cb\whk\T\2s\AGC\pro1\build\external\grassland\src\grassland\vulkan\shaders\x64\Debug\grassland_vulkan_lib_flattened_shaders</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\cb\whk\T\2s\AGC\pro1\build\external\grassland\src\grassland\vulkan\shaders\x64\Debug\grassland_vulkan_lib_shader_files</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\cb\whk\T\2s\AGC\pro1\build\lib\x64\Debug\raytracing_lib_flattened_shaders</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\cb\whk\T\2s\AGC\pro1\build\lib\x64\Debug\raytracing_lib_shader_files</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\cb\whk\T\2s\AGC\pro1\build\Debug\raytracing_gui.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\cb\whk\T\2s\AGC\pro1\build\Debug\raytracing_test.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\cb\whk\T\2s\AGC\pro1\build\x64\Debug\ALL_BUILD</FullPath>
+    </ProjectOutput>
+  </ProjectOutputs>
+  <ContentFiles />
+  <SatelliteDlls />
+  <NonRecipeFileRefs />
+</Project>

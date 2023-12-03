@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\cb\whk\T\2s\AGC\pro1\build\CMakeFiles\f5535ce5c6a98f5f86232c9b5b977aa9\raytracing_shader.frag.h.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\cb\whk\T\2s\AGC\pro1\build\CMakeFiles\f5535ce5c6a98f5f86232c9b5b977aa9\raytracing_shader.vert.h.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\cb\whk\T\2s\AGC\pro1\build\CMakeFiles\8698752a9adba2c4f283cb5753ef4c18\raytracing_lib_shader_files.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\cb\whk\T\2s\AGC\pro1\lib\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="D:\cb\whk\T\2s\AGC\pro1\build\lib\CMakeFiles\raytracing_lib_shader_files" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{4248B0A4-5FB6-3769-B0E8-1B324A91685C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

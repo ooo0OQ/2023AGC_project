@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\cb\whk\T\2s\AGC\pro1\lib\scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\cb\whk\T\2s\AGC\pro1\lib\scene_viewer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\cb\whk\T\2s\AGC\pro1\lib\camera_object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\cb\whk\T\2s\AGC\pro1\lib\material.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\cb\whk\T\2s\AGC\pro1\lib\point_light.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\cb\whk\T\2s\AGC\pro1\lib\raytracing_lib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\cb\whk\T\2s\AGC\pro1\lib\scene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\cb\whk\T\2s\AGC\pro1\lib\scene_settings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\cb\whk\T\2s\AGC\pro1\lib\scene_viewer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\cb\whk\T\2s\AGC\pro1\lib\sphere.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\cb\whk\T\2s\AGC\pro1\lib\triangle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\cb\whk\T\2s\AGC\pro1\build\lib\shaders\raytracing_shader.frag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\cb\whk\T\2s\AGC\pro1\build\lib\shaders\raytracing_shader.vert.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\cb\whk\T\2s\AGC\pro1\build\lib\built_in_shaders.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\cb\whk\T\2s\AGC\pro1\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{46D10EA3-5325-33E3-A2F9-9D8842F9CFFC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{11C6551C-AFFC-3098-BD22-6BC66B55219B}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,10 @@
+^D:\CB\WHK\T\2S\AGC\PRO1\BUILD\CMAKEFILES\7D018A364191B04EA2B0B4015FA62142\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/cb/whk/T/2s/AGC/pro1 -BD:/cb/whk/T/2s/AGC/pro1/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/cb/whk/T/2s/AGC/pro1/build/pro1.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

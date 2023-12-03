@@ -1,0 +1,132 @@
+{
+  "$schema": "https://raw.githubusercontent.com/spdx/spdx-spec/v2.2.1/schemas/spdx-schema.json",
+  "spdxVersion": "SPDX-2.2",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "documentNamespace": "https://spdx.org/spdxdocs/vulkan-memory-allocator-x64-windows-3.0.1#3-4a2f2dcb-792f-42c1-9a1d-4f498ba9580c",
+  "name": "vulkan-memory-allocator:x64-windows@3.0.1#3 a5d2196b3fbdfc33733efb28a7455f3794d7fdf7d285256ff670b154acb8a291",
+  "creationInfo": {
+    "creators": [
+      "Tool: vcpkg-ac02a9f660977426b8ec6392919fbb1d51b10998"
+    ],
+    "created": "2023-11-15T08:02:38Z"
+  },
+  "relationships": [
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "GENERATES",
+      "relatedSpdxElement": "SPDXRef-binary"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-0"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-1"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-2"
+    },
+    {
+      "spdxElementId": "SPDXRef-binary",
+      "relationshipType": "GENERATED_FROM",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-0",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-1",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-2",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    }
+  ],
+  "packages": [
+    {
+      "name": "vulkan-memory-allocator",
+      "SPDXID": "SPDXRef-port",
+      "versionInfo": "3.0.1#3",
+      "downloadLocation": "NOASSERTION",
+      "homepage": "https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "description": "Easy to integrate Vulkan memory allocation library from GPUOpen",
+      "comment": "This is the port (recipe) consumed by vcpkg."
+    },
+    {
+      "name": "vulkan-memory-allocator:x64-windows",
+      "SPDXID": "SPDXRef-binary",
+      "versionInfo": "a5d2196b3fbdfc33733efb28a7455f3794d7fdf7d285256ff670b154acb8a291",
+      "downloadLocation": "NONE",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "This is a binary package built by vcpkg."
+    },
+    {
+      "SPDXID": "SPDXRef-resource-1",
+      "name": "GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator",
+      "downloadLocation": "git+https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator@2a28bc4b39b9b80dad909036442f629f570d7ae1",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "cd83efc357171a5fd1ac65a566d1bf828f7de2b4c97adec92aaaf9cdfedf5a5525de3bd6eb84c453d1cd952c10c3542e6502ad4307a55b61690ce92b80dc4e2f"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "fileName": "./D:/cb/whk/T/2s/AGC/hw2/hw2023-2-ooo0OQ/external/grassland/external/vcpkg/ports/vulkan-memory-allocator/portfile.cmake",
+      "SPDXID": "SPDXRef-file-0",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "a4a0799b2aea9d1379f2201ac979aa834bba2b5223224b12fbc60ca6e6e9f348"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./D:/cb/whk/T/2s/AGC/hw2/hw2023-2-ooo0OQ/external/grassland/external/vcpkg/ports/vulkan-memory-allocator/usage",
+      "SPDXID": "SPDXRef-file-1",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "644d64c457a8c334e26cab0619593bcdaf5d53bf0e2669085169d03d0a4fa2f1"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./D:/cb/whk/T/2s/AGC/hw2/hw2023-2-ooo0OQ/external/grassland/external/vcpkg/ports/vulkan-memory-allocator/vcpkg.json",
+      "SPDXID": "SPDXRef-file-2",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "ff5d04afcf7204ca3e86093ec6038710c0957c252d41ef112e7924411a2103be"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    }
+  ]
+}

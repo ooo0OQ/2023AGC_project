@@ -1,0 +1,50 @@
+^D:\CB\WHK\T\2S\AGC\PRO1\BUILD\CMAKEFILES\F5535CE5C6A98F5F86232C9B5B977AA9\RAYTRACING_SHADER.FRAG.H.RULE
+setlocal
+cd D:\cb\whk\T\2s\AGC\pro1\build\lib
+if %errorlevel% neq 0 goto :cmEnd
+D:
+if %errorlevel% neq 0 goto :cmEnd
+powershell -ExecutionPolicy Bypass -File D:/cb/whk/T/2s/AGC/pro1/external/grassland/scripts/xxd.ps1 shaders/raytracing_shader.frag D:/cb/whk/T/2s/AGC/pro1/build/lib/shaders/raytracing_shader.frag.h
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo "Generating D:/cb/whk/T/2s/AGC/pro1/build/lib/shaders/raytracing_shader.frag.h from shaders/raytracing_shader.frag"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^D:\CB\WHK\T\2S\AGC\PRO1\BUILD\CMAKEFILES\F5535CE5C6A98F5F86232C9B5B977AA9\RAYTRACING_SHADER.VERT.H.RULE
+setlocal
+cd D:\cb\whk\T\2s\AGC\pro1\build\lib
+if %errorlevel% neq 0 goto :cmEnd
+D:
+if %errorlevel% neq 0 goto :cmEnd
+powershell -ExecutionPolicy Bypass -File D:/cb/whk/T/2s/AGC/pro1/external/grassland/scripts/xxd.ps1 shaders/raytracing_shader.vert D:/cb/whk/T/2s/AGC/pro1/build/lib/shaders/raytracing_shader.vert.h
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo "Generating D:/cb/whk/T/2s/AGC/pro1/build/lib/shaders/raytracing_shader.vert.h from shaders/raytracing_shader.vert"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^D:\CB\WHK\T\2S\AGC\PRO1\BUILD\CMAKEFILES\8698752A9ADBA2C4F283CB5753EF4C18\RAYTRACING_LIB_SHADER_FILES.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^D:\CB\WHK\T\2S\AGC\PRO1\LIB\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/cb/whk/T/2s/AGC/pro1 -BD:/cb/whk/T/2s/AGC/pro1/build --check-stamp-file D:/cb/whk/T/2s/AGC/pro1/build/lib/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

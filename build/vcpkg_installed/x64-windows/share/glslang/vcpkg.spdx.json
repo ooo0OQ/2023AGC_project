@@ -1,0 +1,132 @@
+{
+  "$schema": "https://raw.githubusercontent.com/spdx/spdx-spec/v2.2.1/schemas/spdx-schema.json",
+  "spdxVersion": "SPDX-2.2",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "documentNamespace": "https://spdx.org/spdxdocs/glslang-x64-windows-13.0.0-b9cd8cbe-aeea-4d94-b54a-c85281ff5ea5",
+  "name": "glslang:x64-windows@13.0.0 aebc000662128803993e0b3b1c76d31338e6a583f9118e97c758cb64e40fe7ce",
+  "creationInfo": {
+    "creators": [
+      "Tool: vcpkg-ac02a9f660977426b8ec6392919fbb1d51b10998"
+    ],
+    "created": "2023-11-15T07:56:54Z"
+  },
+  "relationships": [
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "GENERATES",
+      "relatedSpdxElement": "SPDXRef-binary"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-0"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-1"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-2"
+    },
+    {
+      "spdxElementId": "SPDXRef-binary",
+      "relationshipType": "GENERATED_FROM",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-0",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-1",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-2",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    }
+  ],
+  "packages": [
+    {
+      "name": "glslang",
+      "SPDXID": "SPDXRef-port",
+      "versionInfo": "13.0.0",
+      "downloadLocation": "NOASSERTION",
+      "homepage": "https://github.com/KhronosGroup/glslang",
+      "licenseConcluded": "Apache-2.0 AND BSD-3-Clause AND MIT AND GPL-3.0-or-later",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "description": "Khronos-reference front end for GLSL/ESSL, partial front end for HLSL, and a SPIR-V generator.",
+      "comment": "This is the port (recipe) consumed by vcpkg."
+    },
+    {
+      "name": "glslang:x64-windows",
+      "SPDXID": "SPDXRef-binary",
+      "versionInfo": "aebc000662128803993e0b3b1c76d31338e6a583f9118e97c758cb64e40fe7ce",
+      "downloadLocation": "NONE",
+      "licenseConcluded": "Apache-2.0 AND BSD-3-Clause AND MIT AND GPL-3.0-or-later",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "This is a binary package built by vcpkg."
+    },
+    {
+      "SPDXID": "SPDXRef-resource-1",
+      "name": "KhronosGroup/glslang",
+      "downloadLocation": "git+https://github.com/KhronosGroup/glslang@13.0.0",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "678df76a6f23b9da93f111fc7e6db57b7f6bf34661b077f9259a0a77d6c023b4d2e3c1cd60b3f9fc15fe69f25cdcb19877e88a50771d3d5275e32574eaefc056"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "fileName": "./D:/cb/whk/T/2s/AGC/hw2/hw2023-2-ooo0OQ/external/grassland/external/vcpkg/ports/glslang/portfile.cmake",
+      "SPDXID": "SPDXRef-file-0",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "995d532b83a07f5186faeebc4ce8fcbe75d5a8f22268b57141468a47e14ca146"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./D:/cb/whk/T/2s/AGC/hw2/hw2023-2-ooo0OQ/external/grassland/external/vcpkg/ports/glslang/usage",
+      "SPDXID": "SPDXRef-file-1",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "e984688849f9cc118afca4ec4d167e590b4a46b5d60b0ebcc073ce2bde5ac3ea"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./D:/cb/whk/T/2s/AGC/hw2/hw2023-2-ooo0OQ/external/grassland/external/vcpkg/ports/glslang/vcpkg.json",
+      "SPDXID": "SPDXRef-file-2",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "dee1a5819f852865febb5b6bead55aa61682d8f3f4db2727cb05d25f6fbc5c68"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    }
+  ]
+}
