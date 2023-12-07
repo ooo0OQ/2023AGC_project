@@ -2,6 +2,11 @@
 Advanced Computer Graphics 2023 course project
 ### Command
     cmake --build build
-    ./build/Debug/ray_tracing_gui.exe
+    ./build/Debug/raytracing_gui.exe
 ### Finished
+    Project Basic
 ### Goal
+    Surface Representation
+    Hard Object
+    Soft Object
+    Particle System

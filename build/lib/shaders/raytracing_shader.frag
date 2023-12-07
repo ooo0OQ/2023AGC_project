@@ -59,7 +59,8 @@ struct PointLight {
 
 
 struct Newclass {
-  float a,b,c,d;
+  int a,b,c;
+  float d;
 };
 
 // clang-format on
@@ -134,7 +135,7 @@ float Find(vec3 origin,vec3 direction){
   return dist;
 }
 vec3 SampleRay(vec3 origin, vec3 direction) {
-  vec3 ambient_light=vec3(nc[0].a,nc[0].b,nc[0].c);
+  vec3 ambient_light=vec3(intBitsToFloat(nc[0].a),intBitsToFloat(nc[0].b),intBitsToFloat(nc[0].c));
   //vec3 ambient_light=camera_object.ambient_light;
   vec3 result_color = vec3(0);
   vec3 ref=vec3(1.0,1.0,1.0);

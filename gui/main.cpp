@@ -25,7 +25,9 @@ int main() {
                   {glm::vec3{1.0, 1.0, 1.0} * reflect_index, kSpecular});
   scene.AddSphere({{-3.5, 2.5, -12.5}, 2.5f},
                   {glm::vec3{1.0, 1.0, 0.5} * reflect_index, kLambertian});
-    scene.AddNewclass({0.7,0.2,0.2,7.7});
+  float a=0.7,b=0.2,c=0.2;
+  int aa=*((int*)&a),bb=*((int*)&b),cc=*((int*)&c);
+  scene.AddNewclass({aa,bb,cc,7.7});
   scene.AddTriangle(
       {{-1e2f, 0.0f, -1e2f}, {1e2f, 0.0f, -1e2f}, {-1e2f, 0.0f, 1e2f}},
       {{0.8f, 0.8f, 0.8f}, kLambertian});

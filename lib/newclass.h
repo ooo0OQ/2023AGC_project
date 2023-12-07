@@ -3,12 +3,12 @@
 #include "glm/glm.hpp"
 
 struct Newclass {
-  Newclass(float a,float b,float c,float d)
+  Newclass(int a,int b,int c,int d)
       : A(a),B(b),C(c),D(d) {
   }
 
-  float A{};
-  float B{};
-  float C{};
-  float D{};
+  int A{};
+  int B{};
+  int C{};
+  int D{};
 };
