@@ -280,7 +280,11 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="D:\cb\whk\T\2s\AGC\pro1\lib\camera_object.h" />
+    <ClCompile Include="D:\cb\whk\T\2s\AGC\pro1\lib\material.cpp" />
     <ClInclude Include="D:\cb\whk\T\2s\AGC\pro1\lib\material.h" />
+    <ClCompile Include="D:\cb\whk\T\2s\AGC\pro1\lib\newclass.cpp" />
+    <ClInclude Include="D:\cb\whk\T\2s\AGC\pro1\lib\newclass.h" />
+    <ClCompile Include="D:\cb\whk\T\2s\AGC\pro1\lib\point_light.cpp" />
     <ClInclude Include="D:\cb\whk\T\2s\AGC\pro1\lib\point_light.h" />
     <ClInclude Include="D:\cb\whk\T\2s\AGC\pro1\lib\raytracing_lib.h" />
     <ClCompile Include="D:\cb\whk\T\2s\AGC\pro1\lib\scene.cpp" />
@@ -288,7 +292,9 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="D:\cb\whk\T\2s\AGC\pro1\lib\scene_settings.h" />
     <ClCompile Include="D:\cb\whk\T\2s\AGC\pro1\lib\scene_viewer.cpp" />
     <ClInclude Include="D:\cb\whk\T\2s\AGC\pro1\lib\scene_viewer.h" />
+    <ClCompile Include="D:\cb\whk\T\2s\AGC\pro1\lib\sphere.cpp" />
     <ClInclude Include="D:\cb\whk\T\2s\AGC\pro1\lib\sphere.h" />
+    <ClCompile Include="D:\cb\whk\T\2s\AGC\pro1\lib\triangle.cpp" />
     <ClInclude Include="D:\cb\whk\T\2s\AGC\pro1\lib\triangle.h" />
     <ClInclude Include="D:\cb\whk\T\2s\AGC\pro1\build\lib\shaders\raytracing_shader.frag.h" />
     <ClInclude Include="D:\cb\whk\T\2s\AGC\pro1\build\lib\shaders\raytracing_shader.vert.h" />

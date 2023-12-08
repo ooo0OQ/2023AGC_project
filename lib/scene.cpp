@@ -1,5 +1,5 @@
 #include "scene.h"
-
+using namespace std;
 void Scene::AddTriangle(const Triangle &triangle, const Material &material) {
   triangles_.push_back(triangle);
   triangle_materials_.push_back(material);
@@ -21,27 +21,44 @@ void Scene::SetSceneSettings(const SceneSettings &scene_settings) {
   scene_settings_ = scene_settings;
 }
 
-const std::vector<Triangle> &Scene::GetTriangleBuffer() const {
-  return triangles_;
+void Scene::GetTriangleBuffer(vector<Newclass>& A, int &b)  {
+  int L=triangles_.size();
+  ANCC(A,b,L);
+  for(int i=0;i<L;i++)triangles_[i].ANC(A,b);
 }
 
-const std::vector<Material> &Scene::GetTriangleMaterialBuffer() const {
-  return triangle_materials_;
+void Scene::GetTriangleMaterialBuffer(vector<Newclass>& A, int &b)  {
+  int L=triangle_materials_.size();
+  ANCC(A,b,L);
+  for(int i=0;i<L;i++)triangle_materials_[i].ANC(A,b);
 }
 
-const std::vector<Sphere> &Scene::GetSphereBuffer() const {
-  return spheres_;
+void Scene::GetSphereBuffer(vector<Newclass>& A, int &b)  {
+  int L=spheres_.size();
+  ANCC(A,b,L);
+  for(int i=0;i<L;i++)spheres_[i].ANC(A,b);
 }
 
-const std::vector<Material> &Scene::GetSphereMaterialBuffer() const {
-  return sphere_materials_;
+void Scene::GetSphereMaterialBuffer(vector<Newclass>& A, int &b)  {
+  int L=sphere_materials_.size();
+  ANCC(A,b,L);
+  for(int i=0;i<L;i++)sphere_materials_[i].ANC(A,b);
 }
 
-const std::vector<PointLight> &Scene::GetPointLightBuffer() const {
-  return point_lights_;
+void Scene::GetPointLightBuffer(vector<Newclass>& A, int &b)  {
+  int L=point_lights_.size();
+  ANCC(A,b,L);
+  for(int i=0;i<L;i++)point_lights_[i].ANC(A,b);
 }
 
-const std::vector<Newclass> &Scene::GetNewclassBuffer() const {
+std::vector<Newclass> &Scene::GenerateData() {
+  new_class_.clear();
+  int current=0;
+  GetTriangleBuffer(new_class_,current);
+  GetTriangleMaterialBuffer(new_class_,current);
+  GetSphereBuffer(new_class_,current);
+  GetSphereMaterialBuffer(new_class_,current);
+  GetPointLightBuffer(new_class_,current);
   return new_class_;
 }
 

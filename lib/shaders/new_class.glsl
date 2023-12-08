@@ -1,5 +1,4 @@
 
 struct Newclass {
-  int a,b,c;
-  float d;
+  int a,b,c,d;
 };

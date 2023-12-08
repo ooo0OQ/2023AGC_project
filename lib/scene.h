@@ -15,15 +15,14 @@ class Scene {
   void AddPointLight(const PointLight &point_light);
   void AddNewclass(const Newclass &new_class);
   void SetSceneSettings(const SceneSettings &scene_settings);
-  [[nodiscard]] const std::vector<Triangle> &GetTriangleBuffer() const;
-  [[nodiscard]] const std::vector<Material> &GetTriangleMaterialBuffer() const;
-  [[nodiscard]] const std::vector<Sphere> &GetSphereBuffer() const;
-  [[nodiscard]] const std::vector<Material> &GetSphereMaterialBuffer() const;
-  [[nodiscard]] const std::vector<PointLight> &GetPointLightBuffer() const;
-  [[nodiscard]] const std::vector<Newclass> &GetNewclassBuffer() const;
-  [[nodiscard]] const SceneSettings &GetSceneSettings() const;
-
- private:
+  [[nodiscard]] void GetTriangleBuffer(std::vector<Newclass>& A, int &b);
+  [[nodiscard]] void GetTriangleMaterialBuffer(std::vector<Newclass>& A, int &b) ;
+  [[nodiscard]] void GetSphereBuffer(std::vector<Newclass>& A, int &b);
+  [[nodiscard]] void GetSphereMaterialBuffer(std::vector<Newclass>& A, int &b);
+  [[nodiscard]] void GetPointLightBuffer(std::vector<Newclass>& A, int &b);
+  [[nodiscard]] void GenerateData(std::vector<Newclass>& A, int &b);
+  [[nodiscard]] std::vector<Newclass> &Scene::GenerateData();
+  [[nodiscard]] const SceneSettings &Scene::GetSceneSettings() const;
   SceneSettings scene_settings_{};
   std::vector<Triangle> triangles_;
   std::vector<Material> triangle_materials_;

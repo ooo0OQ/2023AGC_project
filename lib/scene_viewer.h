@@ -42,11 +42,6 @@ class SceneViewer {
   std::unique_ptr<vulkan::Image> depth_image_;
   std::unique_ptr<vulkan::Framebuffer> framebuffer_;
 
-  std::unique_ptr<vulkan::Buffer> triangle_buffer_;
-  std::unique_ptr<vulkan::Buffer> triangle_material_buffer_;
-  std::unique_ptr<vulkan::Buffer> sphere_buffer_;
-  std::unique_ptr<vulkan::Buffer> sphere_material_buffer_;
-  std::unique_ptr<vulkan::Buffer> point_light_buffer_;
   std::unique_ptr<vulkan::Buffer> new_class_buffer_;
   std::vector<std::unique_ptr<vulkan::Buffer>> camera_object_buffers_;
   std::unique_ptr<vulkan::Buffer> camera_object_staging_buffer_;

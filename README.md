@@ -10,3 +10,7 @@ Advanced Computer Graphics 2023 course project
     Hard Object
     Soft Object
     Particle System
+
+
+main.cpp
+data.h/data.cpp Change Data into new_class vector/ Step

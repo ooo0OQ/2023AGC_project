@@ -120,10 +120,10 @@ void SceneViewer::OnUpdate() {
       glm::translate(glm::mat4{1.0f},
                      -scene_->GetSceneSettings().camera_position));
   camera_object.camera_to_world = camera_to_world;
-  camera_object.num_triangle = scene_->GetTriangleBuffer().size();
-  camera_object.num_sphere = scene_->GetSphereBuffer().size();
+  camera_object.num_triangle = 0;
+  camera_object.num_sphere = 0;
   camera_object.ambient_light = scene_->GetSceneSettings().ambient_color;
-  camera_object.num_point_light = scene_->GetPointLightBuffer().size();
+  camera_object.num_point_light = scene_->GenerateData().size();
 
   // Map to host buffer first, then copy to device buffer
   void *data = camera_object_staging_buffer_->Map();
@@ -306,6 +306,7 @@ void SceneViewer::OnInit() {
       VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
       VMA_MEMORY_USAGE_CPU_ONLY);
 
+  /*
   triangle_buffer_ = std::make_unique<vulkan::Buffer>(
       core_.get(), scene_->GetTriangleBuffer().size() * sizeof(Triangle),
       VK_BUFFER_USAGE_STORAGE_BUFFER_BIT | VK_BUFFER_USAGE_TRANSFER_DST_BIT,
@@ -330,12 +331,12 @@ void SceneViewer::OnInit() {
   point_light_buffer_ = std::make_unique<vulkan::Buffer>(
       core_.get(), scene_->GetPointLightBuffer().size() * sizeof(PointLight),
       VK_BUFFER_USAGE_STORAGE_BUFFER_BIT | VK_BUFFER_USAGE_TRANSFER_DST_BIT,
-      VMA_MEMORY_USAGE_GPU_ONLY);
+      VMA_MEMORY_USAGE_GPU_ONLY);*/
     new_class_buffer_ = std::make_unique<vulkan::Buffer>(
-      core_.get(), scene_->GetNewclassBuffer().size() * sizeof(Newclass),
+      core_.get(), scene_->GenerateData().size() * sizeof(Newclass),
       VK_BUFFER_USAGE_STORAGE_BUFFER_BIT | VK_BUFFER_USAGE_TRANSFER_DST_BIT,
       VMA_MEMORY_USAGE_GPU_ONLY);
-  vulkan::UploadBuffer(
+  /*vulkan::UploadBuffer(
       triangle_buffer_.get(),
       reinterpret_cast<const void *>(scene_->GetTriangleBuffer().data()),
       scene_->GetTriangleBuffer().size() * sizeof(Triangle));
@@ -359,11 +360,11 @@ void SceneViewer::OnInit() {
   vulkan::UploadBuffer(
       point_light_buffer_.get(),
       reinterpret_cast<const void *>(scene_->GetPointLightBuffer().data()),
-      scene_->GetPointLightBuffer().size() * sizeof(PointLight));
+      scene_->GetPointLightBuffer().size() * sizeof(PointLight));*/
     vulkan::UploadBuffer(
       new_class_buffer_.get(),
-      reinterpret_cast<const void *>(scene_->GetNewclassBuffer().data()),
-      scene_->GetNewclassBuffer().size() * sizeof(Newclass));
+      reinterpret_cast<const void *>(scene_->GenerateData().data()),
+      scene_->GenerateData().size() * sizeof(Newclass));
   vertex_shader_ = std::make_unique<vulkan::ShaderModule>(
       core_.get(), vulkan::CompileGLSLToSPIRV(
                        GetShaderCode("shaders/raytracing_shader.vert"),
@@ -384,7 +385,7 @@ void SceneViewer::OnInit() {
                            1,
                            VK_SHADER_STAGE_FRAGMENT_BIT,
                            nullptr,
-                       },
+                       },/*
                        {
                            1,
                            VK_DESCRIPTOR_TYPE_STORAGE_BUFFER,
@@ -419,9 +420,9 @@ void SceneViewer::OnInit() {
                            1,
                            VK_SHADER_STAGE_FRAGMENT_BIT,
                            nullptr,
-                       },
+                       },*/
                        {
-                           6,
+                           1,
                            VK_DESCRIPTOR_TYPE_STORAGE_BUFFER,
                            1,
                            VK_SHADER_STAGE_FRAGMENT_BIT,
@@ -433,8 +434,8 @@ void SceneViewer::OnInit() {
     descriptor_sets_[i] = std::make_unique<vulkan::DescriptorSet>(
         core_.get(), descriptor_pool_.get(), descriptor_set_layout_.get());
     // Update descriptor set
-    VkDescriptorBufferInfo buffer_infos[7]{//New_class
-        {camera_object_buffers_[i]->Handle(), 0, sizeof(CameraObject)},
+    VkDescriptorBufferInfo buffer_infos[2]{//New_class
+        {camera_object_buffers_[i]->Handle(), 0, sizeof(CameraObject)},/*
         {triangle_buffer_->Handle(), 0,
          scene_->GetTriangleBuffer().size() * sizeof(Triangle)},
         {triangle_material_buffer_->Handle(), 0,
@@ -444,12 +445,12 @@ void SceneViewer::OnInit() {
         {sphere_material_buffer_->Handle(), 0,
          scene_->GetSphereMaterialBuffer().size() * sizeof(Material)},
         {point_light_buffer_->Handle(), 0,
-         scene_->GetPointLightBuffer().size() * sizeof(PointLight)},
+         scene_->GetPointLightBuffer().size() * sizeof(PointLight)},*/
          {new_class_buffer_->Handle(), 0,
-         scene_->GetNewclassBuffer().size() * sizeof(Newclass)},
+         scene_->GenerateData().size() * sizeof(Newclass)},
     };
 
-    VkWriteDescriptorSet descriptor_writes[7]{//New_class
+    VkWriteDescriptorSet descriptor_writes[2]{//New_class
         {
             VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET,
             nullptr,
@@ -461,7 +462,7 @@ void SceneViewer::OnInit() {
             nullptr,
             &buffer_infos[0],
             nullptr,
-        },
+        },/*
         {
             VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET,
             nullptr,
@@ -521,22 +522,22 @@ void SceneViewer::OnInit() {
             nullptr,
             &buffer_infos[5],
             nullptr,
-        },
+        },*/
         {
             VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET,
             nullptr,
             descriptor_sets_[i]->Handle(),
-            6,
+            1,
             0,
             1,
             VK_DESCRIPTOR_TYPE_STORAGE_BUFFER,
             nullptr,
-            &buffer_infos[6],
+            &buffer_infos[1],
             nullptr,
         },//New class
     };
 
-    vkUpdateDescriptorSets(core_->Device()->Handle(), 7, descriptor_writes, 0,
+    vkUpdateDescriptorSets(core_->Device()->Handle(), 2, descriptor_writes, 0,
                            nullptr);//New class
   }
 
@@ -649,12 +650,12 @@ void SceneViewer::OnClose() {
   fragment_shader_.reset();
   camera_object_staging_buffer_.reset();
   camera_object_buffers_.clear();
-  point_light_buffer_.reset();
+//  point_light_buffer_.reset();
   new_class_buffer_.reset();
-  sphere_material_buffer_.reset();
-  sphere_buffer_.reset();
-  triangle_material_buffer_.reset();
-  triangle_buffer_.reset();
+//  sphere_material_buffer_.reset();
+//  sphere_buffer_.reset();
+//  triangle_material_buffer_.reset();
+//  triangle_buffer_.reset();
 
   core_.reset();
   if (window_) {
