@@ -1,6 +1,13 @@
 #include "glm/glm.hpp"
 #include "raytracing_lib.h"
 #include "scene_viewer.h"
+#include<iostream>
+using namespace std;
+
+void step(Scene &scene){
+    int L=scene.spheres_.size();
+    for(int i=0;i<L;i++)scene.spheres_[i].origin_radius[1]+=0.01;
+}
 
 int main() {
   SceneSettings scene_settings;
@@ -39,5 +46,12 @@ int main() {
   scene_settings.look_at = glm::vec3{0.0f, 1.0f, 0.0f};
   scene.SetSceneSettings(scene_settings);
   SceneViewer scene_viewer(&scene, "Ray Tracing Demo", 1280, 720, false);
-  scene_viewer.Run();
+  scene_viewer.OnInit();
+  for(int i=1;;i++){
+    bool flag=scene_viewer.Run();
+    if(!flag)break;
+    step(scene);
+    cerr<<i<<endl;
+  }
+  scene_viewer.OnClose();
 }

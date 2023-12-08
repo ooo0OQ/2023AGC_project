@@ -42,21 +42,18 @@ SceneViewer::SceneViewer(Scene *scene,
   }
 }
 
-void SceneViewer::Run() {
-  OnInit();
-  int iter=0;
+bool SceneViewer::Run() {
   if (window_) {
-    while (!glfwWindowShouldClose(window_)) {
-      iter++;
+    
+    if (!glfwWindowShouldClose(window_)) {
       glfwPollEvents();
       OnUpdate();
       OnRender();
-      std::cerr<<iter<<std::endl;
+      return 1;
     }
+    else return 0;
   } else {
     while (!application_should_close_) {
-        
-      std::cerr<<"***"<<std::endl;
       OnUpdate();
       OnRender();
       application_should_close_ = true;
@@ -96,9 +93,9 @@ void SceneViewer::Run() {
                    framebuffer_image_->Extent().height, 4,
                    framebuffer_data.data(),
                    framebuffer_image_->Extent().width * sizeof(uint32_t));
+    return 0;
   }
 
-  OnClose();
 }
 
 void SceneViewer::OnUpdate() {
@@ -124,7 +121,6 @@ void SceneViewer::OnUpdate() {
   camera_object.num_sphere = 0;
   camera_object.ambient_light = scene_->GetSceneSettings().ambient_color;
   camera_object.num_point_light = scene_->GenerateData().size();
-
   // Map to host buffer first, then copy to device buffer
   void *data = camera_object_staging_buffer_->Map();
   memcpy(data, &camera_object, sizeof(camera_object));
@@ -205,7 +201,54 @@ void SceneViewer::OnUpdate() {
 void SceneViewer::OnRender() {
   core_->BeginFrame();
   auto command_buffer = core_->CommandBuffer();
+  new_class_buffer_ = std::make_unique<vulkan::Buffer>(
+      core_.get(), scene_->GenerateData().size() * sizeof(Newclass),
+      VK_BUFFER_USAGE_STORAGE_BUFFER_BIT | VK_BUFFER_USAGE_TRANSFER_DST_BIT,
+      VMA_MEMORY_USAGE_GPU_ONLY);
+vulkan::UploadBuffer(
+      new_class_buffer_.get(),
+      reinterpret_cast<const void *>(scene_->GenerateData().data()),
+      scene_->GenerateData().size() * sizeof(Newclass));
+for (size_t i = 0; i < core_->MaxFramesInFlight(); i++) {
+    descriptor_sets_[i] = std::make_unique<vulkan::DescriptorSet>(
+        core_.get(), descriptor_pool_.get(), descriptor_set_layout_.get());
+    // Update descriptor set
+    VkDescriptorBufferInfo buffer_infos[2]{//New_class
+        {camera_object_buffers_[i]->Handle(), 0, sizeof(CameraObject)},
+         {new_class_buffer_->Handle(), 0,
+         scene_->GenerateData().size() * sizeof(Newclass)},
+    };
 
+    VkWriteDescriptorSet descriptor_writes[2]{//New_class
+        {
+            VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET,
+            nullptr,
+            descriptor_sets_[i]->Handle(),
+            0,
+            0,
+            1,
+            VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER,
+            nullptr,
+            &buffer_infos[0],
+            nullptr,
+        },
+        {
+            VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET,
+            nullptr,
+            descriptor_sets_[i]->Handle(),
+            1,
+            0,
+            1,
+            VK_DESCRIPTOR_TYPE_STORAGE_BUFFER,
+            nullptr,
+            &buffer_infos[1],
+            nullptr,
+        },//New class
+    };
+
+    vkUpdateDescriptorSets(core_->Device()->Handle(), 2, descriptor_writes, 0,
+                           nullptr);//New class
+  }
   // Begin render pass
   VkRenderPassBeginInfo render_pass_begin_info{};
   render_pass_begin_info.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
@@ -306,61 +349,11 @@ void SceneViewer::OnInit() {
       VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
       VMA_MEMORY_USAGE_CPU_ONLY);
 
-  /*
-  triangle_buffer_ = std::make_unique<vulkan::Buffer>(
-      core_.get(), scene_->GetTriangleBuffer().size() * sizeof(Triangle),
-      VK_BUFFER_USAGE_STORAGE_BUFFER_BIT | VK_BUFFER_USAGE_TRANSFER_DST_BIT,
-      VMA_MEMORY_USAGE_GPU_ONLY);
-
-  triangle_material_buffer_ = std::make_unique<vulkan::Buffer>(
-      core_.get(),
-      scene_->GetTriangleMaterialBuffer().size() * sizeof(Material),
-      VK_BUFFER_USAGE_STORAGE_BUFFER_BIT | VK_BUFFER_USAGE_TRANSFER_DST_BIT,
-      VMA_MEMORY_USAGE_GPU_ONLY);
-
-  sphere_buffer_ = std::make_unique<vulkan::Buffer>(
-      core_.get(), scene_->GetSphereBuffer().size() * sizeof(Sphere),
-      VK_BUFFER_USAGE_STORAGE_BUFFER_BIT | VK_BUFFER_USAGE_TRANSFER_DST_BIT,
-      VMA_MEMORY_USAGE_GPU_ONLY);
-
-  sphere_material_buffer_ = std::make_unique<vulkan::Buffer>(
-      core_.get(), scene_->GetSphereMaterialBuffer().size() * sizeof(Material),
-      VK_BUFFER_USAGE_STORAGE_BUFFER_BIT | VK_BUFFER_USAGE_TRANSFER_DST_BIT,
-      VMA_MEMORY_USAGE_GPU_ONLY);
-
-  point_light_buffer_ = std::make_unique<vulkan::Buffer>(
-      core_.get(), scene_->GetPointLightBuffer().size() * sizeof(PointLight),
-      VK_BUFFER_USAGE_STORAGE_BUFFER_BIT | VK_BUFFER_USAGE_TRANSFER_DST_BIT,
-      VMA_MEMORY_USAGE_GPU_ONLY);*/
     new_class_buffer_ = std::make_unique<vulkan::Buffer>(
       core_.get(), scene_->GenerateData().size() * sizeof(Newclass),
       VK_BUFFER_USAGE_STORAGE_BUFFER_BIT | VK_BUFFER_USAGE_TRANSFER_DST_BIT,
       VMA_MEMORY_USAGE_GPU_ONLY);
-  /*vulkan::UploadBuffer(
-      triangle_buffer_.get(),
-      reinterpret_cast<const void *>(scene_->GetTriangleBuffer().data()),
-      scene_->GetTriangleBuffer().size() * sizeof(Triangle));
 
-  vulkan::UploadBuffer(
-      triangle_material_buffer_.get(),
-      reinterpret_cast<const void *>(
-          scene_->GetTriangleMaterialBuffer().data()),
-      scene_->GetTriangleMaterialBuffer().size() * sizeof(Material));
-
-  vulkan::UploadBuffer(
-      sphere_buffer_.get(),
-      reinterpret_cast<const void *>(scene_->GetSphereBuffer().data()),
-      scene_->GetSphereBuffer().size() * sizeof(Sphere));
-
-  vulkan::UploadBuffer(
-      sphere_material_buffer_.get(),
-      reinterpret_cast<const void *>(scene_->GetSphereMaterialBuffer().data()),
-      scene_->GetSphereMaterialBuffer().size() * sizeof(Material));
-
-  vulkan::UploadBuffer(
-      point_light_buffer_.get(),
-      reinterpret_cast<const void *>(scene_->GetPointLightBuffer().data()),
-      scene_->GetPointLightBuffer().size() * sizeof(PointLight));*/
     vulkan::UploadBuffer(
       new_class_buffer_.get(),
       reinterpret_cast<const void *>(scene_->GenerateData().data()),
@@ -385,42 +378,7 @@ void SceneViewer::OnInit() {
                            1,
                            VK_SHADER_STAGE_FRAGMENT_BIT,
                            nullptr,
-                       },/*
-                       {
-                           1,
-                           VK_DESCRIPTOR_TYPE_STORAGE_BUFFER,
-                           1,
-                           VK_SHADER_STAGE_FRAGMENT_BIT,
-                           nullptr,
                        },
-                       {
-                           2,
-                           VK_DESCRIPTOR_TYPE_STORAGE_BUFFER,
-                           1,
-                           VK_SHADER_STAGE_FRAGMENT_BIT,
-                           nullptr,
-                       },
-                       {
-                           3,
-                           VK_DESCRIPTOR_TYPE_STORAGE_BUFFER,
-                           1,
-                           VK_SHADER_STAGE_FRAGMENT_BIT,
-                           nullptr,
-                       },
-                       {
-                           4,
-                           VK_DESCRIPTOR_TYPE_STORAGE_BUFFER,
-                           1,
-                           VK_SHADER_STAGE_FRAGMENT_BIT,
-                           nullptr,
-                       },
-                       {
-                           5,
-                           VK_DESCRIPTOR_TYPE_STORAGE_BUFFER,
-                           1,
-                           VK_SHADER_STAGE_FRAGMENT_BIT,
-                           nullptr,
-                       },*/
                        {
                            1,
                            VK_DESCRIPTOR_TYPE_STORAGE_BUFFER,
@@ -435,17 +393,7 @@ void SceneViewer::OnInit() {
         core_.get(), descriptor_pool_.get(), descriptor_set_layout_.get());
     // Update descriptor set
     VkDescriptorBufferInfo buffer_infos[2]{//New_class
-        {camera_object_buffers_[i]->Handle(), 0, sizeof(CameraObject)},/*
-        {triangle_buffer_->Handle(), 0,
-         scene_->GetTriangleBuffer().size() * sizeof(Triangle)},
-        {triangle_material_buffer_->Handle(), 0,
-         scene_->GetTriangleMaterialBuffer().size() * sizeof(Material)},
-        {sphere_buffer_->Handle(), 0,
-         scene_->GetSphereBuffer().size() * sizeof(Sphere)},
-        {sphere_material_buffer_->Handle(), 0,
-         scene_->GetSphereMaterialBuffer().size() * sizeof(Material)},
-        {point_light_buffer_->Handle(), 0,
-         scene_->GetPointLightBuffer().size() * sizeof(PointLight)},*/
+        {camera_object_buffers_[i]->Handle(), 0, sizeof(CameraObject)},
          {new_class_buffer_->Handle(), 0,
          scene_->GenerateData().size() * sizeof(Newclass)},
     };
@@ -462,67 +410,7 @@ void SceneViewer::OnInit() {
             nullptr,
             &buffer_infos[0],
             nullptr,
-        },/*
-        {
-            VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET,
-            nullptr,
-            descriptor_sets_[i]->Handle(),
-            1,
-            0,
-            1,
-            VK_DESCRIPTOR_TYPE_STORAGE_BUFFER,
-            nullptr,
-            &buffer_infos[1],
-            nullptr,
         },
-        {
-            VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET,
-            nullptr,
-            descriptor_sets_[i]->Handle(),
-            2,
-            0,
-            1,
-            VK_DESCRIPTOR_TYPE_STORAGE_BUFFER,
-            nullptr,
-            &buffer_infos[2],
-            nullptr,
-        },
-        {
-            VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET,
-            nullptr,
-            descriptor_sets_[i]->Handle(),
-            3,
-            0,
-            1,
-            VK_DESCRIPTOR_TYPE_STORAGE_BUFFER,
-            nullptr,
-            &buffer_infos[3],
-            nullptr,
-        },
-        {
-            VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET,
-            nullptr,
-            descriptor_sets_[i]->Handle(),
-            4,
-            0,
-            1,
-            VK_DESCRIPTOR_TYPE_STORAGE_BUFFER,
-            nullptr,
-            &buffer_infos[4],
-            nullptr,
-        },
-        {
-            VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET,
-            nullptr,
-            descriptor_sets_[i]->Handle(),
-            5,
-            0,
-            1,
-            VK_DESCRIPTOR_TYPE_STORAGE_BUFFER,
-            nullptr,
-            &buffer_infos[5],
-            nullptr,
-        },*/
         {
             VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET,
             nullptr,

@@ -11,13 +11,13 @@ class SceneViewer {
               int width,
               int height,
               bool headless);
-  void Run();
-
- private:
+  bool Run();
   void OnUpdate();
   void OnRender();
   void OnClose();
   void OnInit();
+
+ private:
 
   void BuildScreenFrameObjects();
 

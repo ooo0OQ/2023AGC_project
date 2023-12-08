@@ -1,4 +1,5 @@
 #include "scene.h"
+#include<iostream>
 using namespace std;
 void Scene::AddTriangle(const Triangle &triangle, const Material &material) {
   triangles_.push_back(triangle);
@@ -59,6 +60,11 @@ std::vector<Newclass> &Scene::GenerateData() {
   GetSphereBuffer(new_class_,current);
   GetSphereMaterialBuffer(new_class_,current);
   GetPointLightBuffer(new_class_,current);
+  /*
+  cerr<<current<<"!!"<<endl;
+  for(int i=0;i<27;i++)cerr<<new_class_[i].A<<" "<<new_class_[i].B<<" "<<new_class_[i].C<<" "<<new_class_[i].D<<"    ";
+  cerr<<endl;
+  */
   return new_class_;
 }
 
